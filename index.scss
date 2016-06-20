@@ -2,6 +2,7 @@ $secondary-color: #125688;
 $platzigram-red: #f44336;
 
 @import "node_modules/materialize-css/sass/materialize.scss";
+@import "./loader";
 
 @mixin prefix($property, $value, $vendors: webkit moz ms o) {
   @if $vendors {
