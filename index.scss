@@ -19,6 +19,11 @@ body {
   font-family: Montserrat;
 }
 
+.btn.btn-flat {
+  background-color: transparent;
+  box-shadow: none;
+}
+
 .landing {
   margin: 30px auto;
 }
@@ -30,6 +35,13 @@ body {
 .site-footer {
   text-transform: uppercase;
   font-size: 12px;
+}
+
+.loader-container {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .login-box,
@@ -211,5 +223,16 @@ $avatar-size-big: 150px;
       margin-right: 8px;
       display: inline-block;
     }
+  }
+}
+
+.modal {
+  img {
+    max-height: 100%;
+    max-width: 90%;
+  }
+
+  .fa-heart {
+    display: inline-block;
   }
 }

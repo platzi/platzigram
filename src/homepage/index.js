@@ -14,9 +14,13 @@ page('/', header, loading, asyncLoad, function (ctx, next) {
 })
 
 function loading(ctx, next) {
-  var el = document.createElement('div');
-  el.classList.add('loader');
-  document.getElementById('main-container').appendChild(el);
+  var container = document.createElement('div');
+  var loadingEl = document.createElement('div');
+  container.classList.add('loader-container');
+  loadingEl.classList.add('loader');
+  container.appendChild(loadingEl);
+  var main = document.getElementById('main-container');
+  empty(main).appendChild(container);
   next();
 }
 
