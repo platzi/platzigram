@@ -1,6 +1,16 @@
 $secondary-color: #125688;
+$platzigram-red: #f44336;
 
 @import "node_modules/materialize-css/sass/materialize.scss";
+
+@mixin prefix($property, $value, $vendors: webkit moz ms o) {
+  @if $vendors {
+    @each $vendor in $vendors {
+      #{"-" + $vendor + "-" + $property}: #{$value};
+    }
+  }
+  #{$property}: #{$value};
+}
 
 body {
   background: #fafafa;
@@ -71,6 +81,7 @@ body {
 }
 
 $avatar-size: 48px;
+$avatar-size-big: 150px;
 
 .avatar {
   width: $avatar-size;
@@ -101,12 +112,12 @@ $avatar-size: 48px;
   font-size: 30px;
 }
 
-.card .fa-heart-o {
+.fa-heart-o {
   color: $secondary-color;
 }
 
-.card .fa-heart {
-  color: #f44336;
+.fa-heart {
+  color: $platzigram-red;
   display: none;
 }
 
@@ -146,7 +157,58 @@ $avatar-size: 48px;
     }
 
   }
+}
 
+.user-page {
+  margin-top: 30px;
 
+  .heading {
+    margin-bottom: 20px;
+  }
 
+  .picture-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    margin-bottom: 20px;
+    position: relative;
+
+    &:hover {
+      .picture {
+        @include prefix(filter, blur(5px) grayscale(100%));
+      }
+
+      .likes {
+        display: flex;
+      }
+    }
+
+    .picture {
+      margin-bottom: 20px;
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .likes {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      text-align: center;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      color: $platzigram-red;
+      font-size: 34px;
+      display: none
+    }
+
+    .fa-heart {
+      margin-right: 8px;
+      display: inline-block;
+    }
+  }
 }
