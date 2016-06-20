@@ -121,7 +121,8 @@ $avatar-size-big: 150px;
   margin-left: 12px;
 }
 
-.card i {
+.card .heart,
+.card .heart-o, {
   font-size: 30px;
 }
 
@@ -131,15 +132,18 @@ $avatar-size-big: 150px;
 
 .fa-heart {
   color: $platzigram-red;
+}
+
+.heart {
   display: none;
 }
 
 .card.liked {
-  .fa-heart {
+  .heart {
     display: block;
   }
 
-  .fa-heart-o {
+  .heart-o {
     display: none;
   }
 }
@@ -235,4 +239,23 @@ $avatar-size-big: 150px;
   .fa-heart {
     display: inline-block;
   }
+}
+
+.like-heart {
+  font-size: 10em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  transition: all .1s ease;
+  opacity: 0;
+}
+
+.like-heart.liked {
+  color: $platzigram-red;
+  font-size: 12em;
+  display: block;
+  transition: all .5s ease;
+  opacity: 1;
 }
