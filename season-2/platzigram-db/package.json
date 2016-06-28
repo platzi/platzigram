@@ -1,0 +1,35 @@
+{
+  "name": "platzigram-db",
+  "version": "1.0.0",
+  "description": "Platzigram Database Client",
+  "main": "index.js",
+  "scripts": {
+    "lint": "standard",
+    "test": "npm run lint && ava",
+    "postinstall": "node setup.js"
+  },
+  "standard": {
+    "parser": "babel-eslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/julianduque/platzigram-db.git"
+  },
+  "author": "Julian Duque <julianduquej@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/julianduque/platzigram-db/issues"
+  },
+  "homepage": "https://github.com/julianduque/platzigram-db#readme",
+  "devDependencies": {
+    "ava": "^0.15.2",
+    "babel-eslint": "^6.0.4",
+    "standard": "^7.1.2"
+  },
+  "dependencies": {
+    "bluebird": "^3.4.1",
+    "co": "^4.6.0",
+    "rethinkdb": "^2.3.2",
+    "uuid-base62": "^0.1.0"
+  }
+}
