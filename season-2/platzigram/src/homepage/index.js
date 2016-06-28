@@ -11,7 +11,7 @@ var utils = require('../utils')
 
 var socket = io.connect('http://localhost:5151') // use envify
 
-page('/', utils.loadAuth, header, loading, asyncLoad, function (ctx, next) {
+page('/', utils.loadAuth, header, loading, loadPicturesAxios, function (ctx, next) {
   title('Platzigram');
   var main = document.getElementById('main-container');
 
