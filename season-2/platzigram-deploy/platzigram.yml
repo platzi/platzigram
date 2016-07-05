@@ -1,5 +1,5 @@
 ---
-- hosts: platzigram_*
+- hosts: platzigram*
   pre_tasks:
     - name: Update apt repository
       apt: update_cache=yes
