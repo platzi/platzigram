@@ -15,6 +15,9 @@ var port = process.env.PORT || 5050;
 
 var client = platzigram.createClient(config.client)
 
+var Analytics = require('analytics-node');
+var analytics = new Analytics(config.segment.writeKey);
+
 var s3 = new aws.S3({
   accessKeyId: config.aws.accessKey,
   secretAccessKey: config.aws.secretKey
@@ -22,7 +25,7 @@ var s3 = new aws.S3({
 
 var storage = multerS3({
   s3: s3,
-  bucket: 'platzigram',
+  bucket: config.aws.bucket,
   acl: 'public-read',
   metadata: function (req, file, cb) {
     cb(null, { fieldName: file.fieldname })
@@ -131,6 +134,16 @@ app.post('/api/pictures', ensureAuth, function (req, res) {
       if (err) {
         return res.status(500).send(err.message)
       }
+
+      analytics.track({
+        userId: username,
+        event: 'upload picture',
+        properties: {
+          pictureId: img.id,
+          pictureUrl: img.src,
+          picturePublicId: img.publicId
+        }
+      });
 
       res.send(`File uploaded: ${req.file.location}`);
     })

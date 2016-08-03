@@ -2,6 +2,7 @@
 
 const config = {
   aws: {
+    bucket: process.env.AWS_BUCKET || 'platzigram',
     accessKey: process.env.AWS_ACCESS_KEY,
     secretKey: process.env.AWS_SECRET_KEY
   },
@@ -19,7 +20,10 @@ const config = {
       callbackURL: 'http://platzigram.com/auth/facebook/callback'
     }
   },
-  secret: process.env.PLATZIGRAM_SECRET || 'pl4tzi' // never use default
+  secret: process.env.PLATZIGRAM_SECRET || 'pl4tzi', // never use default
+  segment: {
+    writeKey: process.env.SEGMENT_WRITE_KEY
+  }
 }
 
 // For development use local micro instances
@@ -30,7 +34,16 @@ if (process.env.NODE_ENV !== "production") {
     auth: 'http://localhost:5002'
   }
 
-  config.auth.facebook.callbackURL = 'http://platzigram.test:5050/auth/facebook/callback'
+  // incluye tus keys y secrets aquí
+  config.auth.facebook.clientID = '...';
+  config.auth.facebook.clientSecret = '...';
+  config.auth.facebook.callbackURL = 'http://localhost:5050/auth/facebook/callback'
+
+  config.aws.accessKey = '...';
+  config.aws.secretKey = '...';
+  config.aws.bucket = '...';
+
+  config.segment.writeKey = '...';
 }
 
 module.exports = config

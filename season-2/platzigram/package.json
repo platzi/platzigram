@@ -11,6 +11,7 @@
   ],
   "author": "platzi",
   "dependencies": {
+    "analytics-node": "^2.1.0",
     "aws-sdk": "^2.4.0",
     "axios": "^0.11.0",
     "body-parser": "^1.15.2",
