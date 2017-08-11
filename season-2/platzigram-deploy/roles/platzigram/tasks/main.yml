@@ -1,0 +1,42 @@
+---
+- include: deps.yml
+- name: "Restarting RethinkDB"
+  service:
+    name=rethinkdb
+    state=restarted
+- name: "Copying Projects"
+  copy:
+    src="{{ item }}"
+    dest=/opt/
+    mode=u=r,g=r
+  with_items: "{{ projects }}"
+- name: "Running npm install"
+  command: bash -c "npm install || npm install"
+    chdir="/opt/{{ item }}"
+    creates="/opt/{{ item }}/node_modules"
+  with_items: "{{ projects }}"
+- name: "Installing upstart scripts"
+  copy:
+    src="upstart/{{ item }}.conf"
+    dest=/etc/init/
+    mode=u=r,g=r
+  with_items: "{{ services }}"
+- name: "Run platzigram services"
+  service:
+    name={{ item }}
+    state=restarted
+    enabled=yes
+  with_items: "{{ services }}"
+- name: "Copying NGINX config files"
+  copy:
+    src="nginx/{{ item }}"
+    dest="/etc/nginx/sites-enabled/{{ item }}"
+    mode=u=r,g=r,o=r
+  with_items:
+    - platzigram.conf
+    - platzigram-api.conf
+    - platzigram-ws.conf
+- name: "Restarting NGINX"
+  service:
+    name=nginx
+    state=reloaded
