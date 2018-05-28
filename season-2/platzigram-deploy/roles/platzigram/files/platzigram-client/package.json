@@ -1,0 +1,35 @@
+{
+  "name": "platzigram-client",
+  "version": "1.0.0",
+  "description": "Platzigram API Client",
+  "main": "index.js",
+  "scripts": {
+    "lint": "standard",
+    "test": "npm run lint && ava"
+  },
+  "standard": {
+    "parser": "babel-eslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/julianduque/platzigram-client.git"
+  },
+  "author": "Julian Duque <julianduquej@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/julianduque/platzigram-client/issues"
+  },
+  "homepage": "https://github.com/julianduque/platzigram-client#readme",
+  "devDependencies": {
+    "ava": "^0.15.2",
+    "babel-eslint": "^6.0.5",
+    "nock": "^8.0.0",
+    "standard": "^7.1.2",
+    "uuid-base62": "^0.1.0"
+  },
+  "dependencies": {
+    "bluebird": "^3.4.1",
+    "platzigram-db": "file:../platzigram-db",
+    "request-promise": "^3.0.0"
+  }
+}
